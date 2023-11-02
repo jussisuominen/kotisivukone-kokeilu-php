@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid text-white">
+    <a class="navbar-brand text-white" href="#">Kotisivut</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+        {% for id, sivu in sivut %}
+        <li class="nav-item">
+          {% if id == nykyisen_sivun_id %}
+          <a class="nav-link active text-white" aria-current="page" href="#">{{ sivu['otsikko'] }}</a>
+          {% endif %}</li>
+
+          {% if id != nykyisen_sivun_id %}
+          <li>
+            <a class="nav-link text-white" aria-current="page" href="#">{{ sivu['otsikko'] }}</a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>

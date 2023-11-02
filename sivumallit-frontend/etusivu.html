@@ -1,0 +1,19 @@
+{% extends "jaettu.html" %}
+
+{% block sisalto %}
+
+	<h2>Sivut</h2>
+
+	{% for id, sivu in sivut %}
+		<div class="py-2">
+			{{ sivu["otsikko"] }}
+			<form action="muokkaa_sivua.php" method="POST">
+				<input type="hidden" name="sivun_id" value="{{ id }}">
+				<small>
+					<button class="btn btn-primary btn-sm mt-2">Muokkaa</button>
+				</small>
+			</form>
+		</div>
+	{% endfor %}
+
+{% endblock %}

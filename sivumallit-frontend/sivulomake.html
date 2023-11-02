@@ -1,0 +1,33 @@
+{% extends "jaettu.html" %}
+
+{% block sisalto %}
+
+<h2>{{ lomakkeen_otsikko }}</h2>
+
+<hr style="border: 1px dashed">
+
+<form action="{{ lomaketoiminto }}" method="POST">
+  <!-- <p>
+    <label for="sivun_id">ID:</label>
+    <input type="text" name="sivun_id" id="sivun_id" class="form-control" value="{{ sivun_id }}">
+  </p> -->
+
+  <input type="hidden" name="sivun_id" value="{{ sivun_id }}">
+
+  <p>
+    <label for="sivun_otsikko">Otsikko:</label>
+    <input type="text" name="sivun_otsikko" id="sivun_otsikko" class="form-control"  value="{{ sivun_otsikko }}">
+  </p>
+
+  <p>
+    <label for="sivun_sisalto">Sisältö (HTML):</label>
+    <div>
+      <textarea type="text" name="sivun_sisalto" id="sivun_sisalto" rows="20" class="form-control">{{ sivun_sisalto }}</textarea>
+    </div>
+  </p>
+
+  <hr>
+
+  <button class="btn btn-secondary">{{ painiketeksti }}</button>
+</form>
+{% endblock %}

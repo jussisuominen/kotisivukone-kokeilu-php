@@ -1,0 +1,74 @@
+{% extends "jaettu.html" %}
+
+{% block head %} 
+<link rel="stylesheet" href="sivumallit-frontend/lib/codemirror.css">
+<link rel="stylesheet" href="sivumallit-frontend/addon/hint/show-hint.css">
+<script src="sivumallit-frontend/lib/codemirror.js"></script>
+<script src="sivumallit-frontend/addon/hint/show-hint.js"></script>
+<script src="sivumallit-frontend/addon/hint/xml-hint.js"></script>
+<script src="sivumallit-frontend/addon/hint/html-hint.js"></script>
+<script src="sivumallit-frontend/mode/xml/xml.js"></script>
+<!-- <script src="mode/javascript/javascript.js"></script> -->
+<script src="sivumallit-frontend/mode/css/css.js"></script>
+<script src="sivumallit-frontend/mode/htmlmixed/htmlmixed.js"></script>
+<style>
+  .CodeMirror {border-top: 1px solid #888; border-bottom: 1px solid #888;}
+</style>
+{% endblock %}
+
+{% block sisalto %}
+
+<h2>Sivut</h2>
+
+{% for id, sivu in sivut %}
+  <div class="py-2">
+    {{ sivu["otsikko"] }}
+    <form action="muokkaa_sivua.php" method="POST">
+      <input type="hidden" name="sivun_id" value="{{ id }}">
+      <small><button class="btn btn-primary btn-sm mt-2">Muokkaa</button></small>
+    </form>
+  </div>
+{% endfor %}
+
+<hr>
+
+<h2>Sivumallit ja tyylit</h2>
+
+<textarea id="code"></textarea>
+
+<form action="paivita_sivupohja.php" method="POST">
+  sivupohja.html
+
+  <p>
+    <textarea name="sivupohja_html" id="sivupohjaeditori" cols="30" rows="10"><h1>Testi</h1></textarea>
+  </p>
+
+  navbar.html
+  <p>
+    <textarea class="form-control" name="navbar_html" cols="30" rows="10">{{ navbar_html }}</textarea>
+  </p>
+
+  tyylit.css
+  <p>
+    <textarea class="form-control" name="tyylit_css" cols="30" rows="10">{{ tyylit_css }}</textarea>
+  </p>
+
+  <p>
+    <button class="btn btn-secondary">Päivitä sivupohja</button>
+  </p>
+</form>
+
+<div class="code"></div>
+
+<script src="sivumallit-frontend/lib/codemirror.js"></script>
+<script>
+window.onload = function() {
+  var editor = CodeMirror.fromTextArea(document.getElementById("sivupohjaeditori"), {
+      lineNumbers: true,
+      mode: "text/html",
+      matchBrackets: true
+    });
+};
+</script>
+
+{% endblock %}
